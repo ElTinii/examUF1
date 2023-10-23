@@ -1,16 +1,31 @@
 <?php
-
+session_start();
 require_once '../model/pdo-articles.php';
 require_once '../controller/session.php';
+//Ex7.1
+//He afegit aquest if que el que fa es que cuan selecciones una de les opcions es posa aquella, sino hi ha ninguna seleccionada es mantindra 10 per defecte
+if (isset($_GET['postsPerPage'])){
+    $_SESSION['postPerPage'] = $_GET['postsPerPage'];
+}
+else{
+    $_SESSION['postPerPage'] = 10;
+}
 
-$postsPerPage = 10;
+$postsPerPage = $_SESSION['postPerPage'];
 
-$orderBy = 'date-desc';
+//Ex7.2
+//Estic fent el mateix que per la part de post per pagina 
+if (isset($_GET['orderBy'])){
+    $_SESSION['orderBy'] = $_GET['orderBy'];
+}
+else{
+    $_SESSION['orderBy'] = 'date-desc';
+}
+$orderBy = $_SESSION['orderBy'];
 
 $searchTerm = "";
 if (isset($_GET['search'])) $searchTerm = $_GET['search'];
 
-session_start();
 $userId = getSessionUserId();
 
 $nArticles = getCountOfPosts($userId, $searchTerm); 
@@ -48,4 +63,6 @@ $previousPageLink = $firstPage ? "#" : $searchQuery . "page=" . ($currentPage - 
 $firstPageLink = $firstPage ? "#" : $searchQuery . "page=1";
 $lastPageLink = $lastPage ? "#" : $searchQuery . "page=$nPages";
 
-require_once '../view/index.view.php';
+//require_once '../view/index.view.php';
+//Ex1
+include_once '../view/index.view.php'; //En ningun moment esta tocant la base de dades, es pot cridar amb include que es mes rapid

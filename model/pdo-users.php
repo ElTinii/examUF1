@@ -1,4 +1,3 @@
-
 <?php
 
 require_once 'db-connection.php';
@@ -313,4 +312,21 @@ function clearResetToken($userId)
 {
     setResetToken($userId, "");
 }
-
+//Ex5
+//Aqui estic creant una funcio que hem comprovi si esta iniciat com admin o com a usuari no va
+function admin(){
+    try {
+        $userid =  getSessionUserId();
+        $connexio = getConnection();
+        $statement = $connexio->prepare('SELECT * FROM users WHERE id = ?');
+        $statement->bindParam(1, $userId);
+        $admintf = $statement['admin'];
+        if($admintf == 1){
+            return true;
+        }else{
+            return false;
+        }
+    } catch (\Throwable $th) {
+        die("No es pot establir connexió amb la base de dades");
+    }
+}

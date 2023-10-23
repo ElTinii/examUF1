@@ -37,8 +37,8 @@
                 <li><a class="dropdown-item " href="recovery-password.php"><span class="icon-key"></span> Recovery password</a></li>
                 <div class="dropdown-divider"></div>
                 <li><a class="dropdown-item" href="clear-session.php"><span class="icon-logout"></span> Log out</a></li>
+                <li><a class="dropdown-item" href="clear-session.php"><span class="icon-logout"></span>Donar de baixa</a></li>
                 STR;
-
           ?>
       </ul>
       </li>

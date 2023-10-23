@@ -28,7 +28,9 @@
         <div class="row justify-content-center h-100">
             <div class="edit d-grid gap-3 p-4 border col-md-10 col-12 align-items-center">
 
-                
+                <?php //Ex4
+                      //Jo crec que ja esta implementat el post en aquest formulari
+                ?>
                 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" id="form" method="POST" novalidate enctype="multipart/form-data">
                     
                     <header class="col-12 d-flex justify-content-between mb-4">

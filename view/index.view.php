@@ -130,7 +130,8 @@
 			<div class="row justify-content-center <?php echo empty($articles) ? "d-none" : "" ?>">
 				<div class="col-md-2 col-6">
 					<!-- Desplegable pels articles per pàgina -->
-					<form action="index.php" method="post" class="text-center">
+					<!--L'unic que he fet aqui es canviar el method per poder agafar l'opcio per url -->
+					<form action="index.php" method="GET" class="text-center">
 						<label for="postsPerPage">Posts per page: </label>
 						<select class="form-select " name="postsPerPage" onchange="this.form.submit()">
 							<option <?php echo $postsPerPage == 10 ? 'selected' : '' ?> value="10">10</option>
@@ -141,7 +142,8 @@
 				</div>
 				<div class="col-md-2 col-6">
 					<!-- Desplegable pel mètode d'ordenació dels articles -->
-					<form action="index.php" method="post" class="text-center">
+					<!--L'unic que he fet aqui es canviar el method per poder agafar l'opcio per url -->
+					<form action="index.php" method="GET" class="text-center">
 						<label for="orderBy">Order by: </label>
 						<select class="form-select " name="orderBy" onchange="this.form.submit()">
 							<option <?php echo $orderBy == 'date-desc' ? 'selected' : '' ?> value="date-desc">Date (desc)</option>

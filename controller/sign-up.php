@@ -2,9 +2,12 @@
 <?php
 
 require_once '../model/pdo-users.php';
-require_once '../controller/session.php';
-require_once '../controller/input-common.php';
-
+//require_once '../controller/session.php';
+//require_once '../controller/input-common.php';
+//Ex1
+//En ningun moment esta tocant la base de dades, es pot cridar amb include que es mes rapid
+include_once '../controller/session.php';
+include_once '../controller/input-common.php';
 $errors = [];
 
 session_start();
@@ -23,9 +26,10 @@ if(isset($_POST['email'])) {
 
     signup($email, $nickname, $password1, $password2);
 }
-
-require_once '../view/sign-up.view.php';
-
+//require_once '../view/sign-up.view.php';
+//Ex1
+//En ningun moment esta tocant la base de dades, es pot cridar amb include que es mes rapid
+include_once '../view/sign-up.view.php';
 // Funcions
 
 /**
@@ -45,9 +49,11 @@ function signup($email, $nickname, $password1, $password2) {
     checkPasswords($password1, $password2);
 
     if (!empty($errors)) return;
-
-    $md5Hash = md5($password1);
-    insertNewUser($email, $nickname, $md5Hash);
+    //Ex11
+    //$md5Hash =  md5($password1);
+    //Aqui el que he fet es canviar la manera d'encriptar
+    $encr_pass = password_hash($password1,PASSWORD_DEFAULT);
+    insertNewUser($email, $nickname, $encr_pass);
     startSession($email, true);
     redirectHome();
 }

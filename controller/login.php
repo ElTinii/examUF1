@@ -1,9 +1,12 @@
 <?php
 
 require_once '../model/pdo-users.php';
-require_once '../controller/input-common.php';
-require_once '../controller/session.php';
-
+//Ex1
+//require_once '../controller/input-common.php';
+//require_once '../controller/session.php';
+//Faig aixo per que no toca res sensible 
+include_once '../controller/input-common.php';
+include_once '../controller/session.php';
 $errors = [];
 $email;
 $password;
@@ -62,11 +65,13 @@ function checkUserInput($email, $password)
         $errors['email'] = "This user email doesn't exist.";
         return;
     }
-
-    $md5Hash = md5($password);
+    //Ex11
+    //$md5Hash = md5($password);
+    //Aqui el que he fet es canviar la manera d'encriptar
+    $encr_pass = password_hash($password,PASSWORD_DEFAULT);
     $md5HashDB = getUserHash($email);
-
-    if ($md5Hash != $md5HashDB) {
+//Aqui el que he fet es afegir la funcio password verify
+    if (password_verify($encr_pass,$md5HashDB)) {
         $errors['password'] = "Wrong password.";
         return;
     }

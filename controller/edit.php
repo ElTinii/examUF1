@@ -1,10 +1,13 @@
 <?php
 
 require_once '../model/pdo-articles.php';
-require_once '../controller/input-common.php';
-require_once '../controller/images.php';
-require_once '../controller/session.php';
-
+//Ex1
+//require_once '../controller/input-common.php';
+//require_once '../controller/images.php'; Elimino aquest require perque cuan intento obrir hem dona error, no esta creat a ningun lloc
+//require_once '../controller/session.php';
+//En ningun moment esta tocant la base de dades, es pot cridar amb include que es mes rapid
+include_once '../controller/session.php';
+include_once '../controller/input-common.php';
 $errors = [];
 
 session_start();
@@ -52,13 +55,18 @@ if (isset($_GET['id'])) {
         }
 
     } else {
-        $articleId = $_SESSION["articleId"];
+        //Ex15
+        //$articleId = $_SESSION["articleId"];
+        //L'unic que he hagut de fer per que funcioni la part de crear un post es canviar-li les cometes a article id, i si que es crea
+        $articleId = $_SESSION['articleId'];
     }
     $article = getPost($articleId);
 
 } else unset($_SESSION['articleId']);
-
-require_once '../view/edit.view.php';
+//Ex1
+//En ningun moment esta tocant la base de dades, es pot cridar amb include que es mes rapid, i no es obligatori
+//require_once '../view/edit.view.php';
+include_once '../view/edit.view.php';
 
 // Funcions
 
