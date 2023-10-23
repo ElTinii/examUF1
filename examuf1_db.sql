@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2022 a las 19:29:51
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 23-10-2023 a las 20:34:22
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,8 +30,8 @@ USE `examuf1_db`;
 --
 
 DROP TABLE IF EXISTS `posts`;
-CREATE TABLE IF NOT EXISTS `posts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `posts` (
+  `id` int(11) NOT NULL,
   `synopsis` text NOT NULL,
   `title` text NOT NULL,
   `director` text NOT NULL,
@@ -39,15 +39,9 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `youtube_link` text NOT NULL,
   `user_id` int(11) NOT NULL,
   `dateTime` timestamp NOT NULL DEFAULT current_timestamp(),
-  `image_path` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4;
+  `image_path` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `posts`
---
-
-TRUNCATE TABLE `posts`;
 --
 -- Volcado de datos para la tabla `posts`
 --
@@ -85,7 +79,8 @@ INSERT INTO `posts` (`id`, `synopsis`, `title`, `director`, `link`, `youtube_lin
 (56, 'En Finlandia, en 1923, el paso de un cometa hizo que los habitantes de un pueblo quedaran completamente desorientados; incluso una mujer llegó a llamar a la policía denunciando que el hombre que estaba en su casa no era su marido. Décadas más tarde, un grupo de amigos recuerda este caso mientras cenan, brindan y se preparan para ver pasar un cometa...', 'Coherence', 'James Ward Byrkit', 'https://www.filmaffinity.com/es/film974551.html', 'https://www.youtube.com/watch?v=sEceDz1Rodc', 3, '2022-10-17 18:18:20', '56.jpg'),
 (57, 'Unos jóvenes ladrones creen haber encontrado la oportunidad de cometer el robo perfecto. Su objetivo será un ciego solitario, poseedor de miles de dólares ocultos. Pero tan pronto como entran en su casa serán conscientes de su error, pues se encontrarán atrapados y luchando por sobrevivir contra un psicópata con sus propios y temibles secretos', 'Don\'t Breathe', 'Fede Álvarez', 'https://www.filmaffinity.com/es/film609968.html', 'https://www.youtube.com/watch?v=76yBTNDB6vU', 3, '2022-10-18 15:56:18', '57.jpg'),
 (58, 'Tanto Gi Taek (Song Kang-ho) como su familia están sin trabajo. Cuando su hijo mayor, Gi Woo (Choi Woo-sik), empieza a dar clases particulares en casa de Park (Lee Seon-gyun), las dos familias, que tienen mucho en común pese a pertenecer a dos mundos totalmente distintos, comienzan una interrelación de resultados imprevisibles.', 'Parasite', 'Bong Joon-ho', 'https://www.filmaffinity.com/es/film520465.html', 'https://www.youtube.com/watch?v=isOGD_7hNIY', 3, '2022-10-18 15:57:56', '58.jpg'),
-(59, 'Para sobrellevar el insomnio crónico que sufre desde su regreso de Vietnam, Travis Bickle (Robert De Niro) trabaja como taxista nocturno en Nueva York. Es un hombre insociable que apenas tiene contacto con los demás, se pasa los días en el cine y vive prendado de Betsy (Cybill Shepherd), una atractiva rubia que trabaja como voluntaria en una campaña política. Pero lo que realmente obsesiona a Travis es comprobar cómo la violencia, la sordidez y la desolación dominan la ciudad. Y un día decide pasar a la acción.', 'Taxi Driver', 'Martin Scorsese', 'https://www.filmaffinity.com/es/film396074.html', 'https://www.youtube.com/watch?v=UUxD4-dEzn0', 3, '2022-10-18 16:02:32', '59.jpg');
+(59, 'Para sobrellevar el insomnio crónico que sufre desde su regreso de Vietnam, Travis Bickle (Robert De Niro) trabaja como taxista nocturno en Nueva York. Es un hombre insociable que apenas tiene contacto con los demás, se pasa los días en el cine y vive prendado de Betsy (Cybill Shepherd), una atractiva rubia que trabaja como voluntaria en una campaña política. Pero lo que realmente obsesiona a Travis es comprobar cómo la violencia, la sordidez y la desolación dominan la ciudad. Y un día decide pasar a la acción.', 'Taxi Driver', 'Martin Scorsese', 'https://www.filmaffinity.com/es/film396074.html', 'https://www.youtube.com/watch?v=UUxD4-dEzn0', 3, '2022-10-18 16:02:32', '59.jpg'),
+(60, 'hola', 'Hola', 'hola', 'https://www.youtube.com/', 'https://www.youtube.com/watch?v=RiSrlLsajyQ', 5, '2023-10-23 18:05:16', '');
 
 -- --------------------------------------------------------
 
@@ -94,31 +89,62 @@ INSERT INTO `posts` (`id`, `synopsis`, `title`, `director`, `link`, `youtube_lin
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `nickname` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `reset_token` text NOT NULL,
   `remember_me_token` text NOT NULL,
   `social_provider` enum('','Twitter','GitHub','Google') NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  `admin` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `users`
---
-
-TRUNCATE TABLE `users`;
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`nickname`, `email`, `password`, `id`, `reset_token`, `remember_me_token`, `social_provider`) VALUES
-('Anakin', 'anakinskywalker@example.com', 'dd9d21e22391090ddce7c6ed58c6412d', 1, '', '', ''),
-('Usuari1', 'user@example.com', 'dd9d21e22391090ddce7c6ed58c6412d', 2, '', '', ''),
-('Luke', 'lukeskywalker@sapalomera.cat', '', 3, '', 'da8aa95050bdaede6d7415e9af84ef1a', 'GitHub'),
-('Obi-Wan', 'Obiwankenobi.02@gmail.com', '', 4, '', '', 'Twitter');
+INSERT INTO `users` (`nickname`, `email`, `password`, `id`, `reset_token`, `remember_me_token`, `social_provider`, `admin`) VALUES
+('Anakin', 'anakinskywalker@example.com', 'dd9d21e22391090ddce7c6ed58c6412d', 1, '', '', '', 0),
+('Usuari1', 'user@example.com', 'dd9d21e22391090ddce7c6ed58c6412d', 2, '', '', '', 0),
+('Luke', 'lukeskywalker@sapalomera.cat', '', 3, '', 'da8aa95050bdaede6d7415e9af84ef1a', 'GitHub', 0),
+('Obi-Wan', 'Obiwankenobi.02@gmail.com', '', 4, '', '', 'Twitter', 0),
+('Sceptile', 'alexinyo2003@gmail.com', 'b093586fb117515779df3ca2057fb390', 5, '', 'ca5889b173a2ee8b51d02539986d42b4', '', 1),
+('Alexfdzg', 'thos.vazquez.alex@gmail.com', 'b093586fb117515779df3ca2057fb390', 6, '', '785aacf27f25cb8f00ff382dcabaf719', '', 0),
+('juanitos', 'pedro@gmail.com', '$2y$10$bjbO0faz8MitW.BoavEXfu.OO', 7, '', '46292f1a9558cdb5fe74bc6450b1d94a', '', 0),
+('El_Tinii', 'alex@gmail.com', '$2y$10$8IJkV4JXeKi6UPWDomYaeeOFb', 8, '', '0ee4ba7df9d5e502356ae708911db646', '', 0);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
