@@ -1,0 +1,161 @@
+/* ___________________________________________
+
+    HTML, BODY i MAIN
+   ___________________________________________ */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    padding-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    word-break: break-word;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+
+/* ___________________________________________
+
+    Estils generals
+   ___________________________________________ */
+
+@font-face {
+    font-family: Marcellus;
+    src: url(../view/fonts/Marcellus-Regular.ttf);
+}
+
+p {
+    text-align: justify;
+}
+
+span[class^='icon'] {
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+}
+
+.edit {
+    height: 100%;
+    background-color: #eff1ff;
+}
+
+span.offset {
+    position: relative;
+    margin-left: -20px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.default {
+    cursor: default;
+}
+
+
+
+/* ___________________________________________
+
+    Estil pel navbar
+   ___________________________________________ */
+
+.navbar-brand {
+    font-family: Marcellus;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* ___________________________________________
+
+    Horizontal rule amb text al centre
+   ___________________________________________ */
+
+h5.hr {
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #b3b3b3;
+    color: #a5a5a5;
+    line-height: 0.1em;
+    margin: 30px 0 30px;
+}
+
+h5.hr span {
+    background: #fff;
+    padding: 0 10px;
+}
+
+/* ___________________________________________
+
+    Estil pels cards (preview dels articles)
+   ___________________________________________ */
+
+img.card-img-top {
+    /* Centra la imatge de dins l'element */
+    object-position: center;
+    height: 400px;
+    background-color: #e0e0e0;
+}
+
+img.no-fit {
+    /* No ajustar la imatge */
+    object-fit: none;
+}
+
+img.cover {
+    /* Ajustar la imatge a tot l'espai*/
+    object-fit: cover;
+}
+
+/* Sombra pels articles */
+.card.post-shadow {
+    /* box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px; */
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+/* Només aplicar link-stretch al body dels articles */
+/* Propietat necessària per tal que l'abast de l'enllaç sigui únicament el body del card */
+.card-body {
+    transform: rotate(0);
+}
+
+/* ___________________________________________
+
+    Estil pels carrusels
+   ___________________________________________ */
+
+.carousel img {
+    /* Centra la imatge de dins l'element */
+    object-position: center;
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    background-color: #e0e0e0;
+}
+
+/* ___________________________________________
+
+    Estil pels iframe dels trailers de YouTube
+   ___________________________________________ */
+
+div.youtube {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 */
+    height: 0;
+}
+
+div.youtube iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
